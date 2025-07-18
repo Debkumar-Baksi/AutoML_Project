@@ -5,20 +5,40 @@ import joblib
 model = joblib.load("best_model.pkl")
 
 # Create a single synthetic sample (one row)
+
 sample = pd.DataFrame([{
-    "area": 300,
-    "bedrooms": 1,
-    "bathrooms": 1,
-    "stories": 1,
-    "mainroad": "no",
-    "guestroom": "no",
-    "basement": "no",
-    "hotwaterheating": "no",
-    "airconditioning": "no",
-    "parking": 0,
-    "prefarea": "no",
-    "furnishingstatus": "semi-furnished"
+    "age": 26,
+    "sex": 1,
+    "cp": 2,
+    "trestbps": 110,
+    "chol": 20,
+    "fbs": 1,
+    "restecg": 0,
+    "thalach": 110,
+    "exang": 1,
+    "oldpeak": 2.3,
+    "slope": 1,
+    "ca": 1,
+    "thal": 1
 }])
+
+
+
+
+# sample = pd.DataFrame([{
+#     "area": 9000,
+#     "bedrooms": 2,
+#     "bathrooms": 1,
+#     "stories": 1,
+#     "mainroad": "no",
+#     "guestroom": "no",
+#     "basement": "no",
+#     "hotwaterheating": "no",
+#     "airconditioning": "no",
+#     "parking": 0,
+#     "prefarea": "no",
+#     "furnishingstatus": "semi-furnished"
+# }])
 
 
 # sample = pd.DataFrame([{
@@ -53,6 +73,6 @@ sample_encoded = sample_encoded[expected_columns]
 # Predict
 prediction = model.predict(sample_encoded)
 
-# print("Predicted:", "Presence" if prediction[0] == 1 else "Absence")
+print("Predicted:", "Presence" if prediction[0] == 1 else "Absence")
 
-print("Predicted House Price (INR):", prediction[0])
+# print("Predicted Heart Disease", prediction[0])

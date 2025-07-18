@@ -44,8 +44,18 @@ def predict_from_custom_csv(csv_path, target_col=None):
     print("\nPredictions on Custom Dataset:\n", preds)
 
 if __name__ == "__main__":
-    # Example usage
-    automl_pipeline("Housing.csv", task_type="regression", target_col="price")
+    print("Welcome to AutoML Pipeline!")
+    csv_path = input("Enter the path to your CSV file: ").strip()
+    task_type = input("Enter task type (classification/regression): ").strip().lower()
+    target_col = input("Enter the target column name (leave blank to auto-detect): ").strip()
+    target_col = target_col if target_col else None
 
-    # To test predictions on custom input
-    # predict_from_custom_csv("test_input.csv", target_col="Heart Disease")
+    automl_pipeline(csv_path, task_type=task_type, target_col=target_col)
+
+    # Optionally, ask if user wants to predict on a new file
+    predict_choice = input("Do you want to predict on a new CSV file? (y/n): ").strip().lower()
+    if predict_choice == 'y':
+        pred_csv = input("Enter the path to the CSV file for prediction: ").strip()
+        pred_target = input("Enter the target column name for prediction : ").strip()
+        pred_target = pred_target if pred_target else None
+        predict_from_custom_csv(pred_csv, target_col=pred_target)
